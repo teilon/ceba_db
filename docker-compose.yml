@@ -1,0 +1,16 @@
+# docker-compose.yml
+version: '3'
+
+services:
+
+  db:
+    container_name: db_ceba
+    image: postgres:alpine
+    restart: always
+    env_file:
+     - ./db/database.conf
+    ports:
+     - 5434:5432
+    volumes:
+      - ./db/pgdata:/var/lib/postgresql/data
+      - ./db/scripts:/docker-entrypoint-initdb.d
